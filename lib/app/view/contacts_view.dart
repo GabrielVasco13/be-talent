@@ -1,8 +1,7 @@
+import 'package:be_talent/app/components/employee_expansion_tile_component.dart';
 import 'package:be_talent/app/components/search_bar_component.dart';
 import 'package:be_talent/app/components/title_app.dart';
-import 'package:be_talent/app/modelView/employee_model_view.dart';
 import 'package:be_talent/app/modelView/search_model_view.dart';
-import 'package:be_talent/design_system/font/helvica.dart';
 import 'package:be_talent/design_system/spacing/space.dart';
 import 'package:flutter/material.dart';
 
@@ -14,25 +13,20 @@ class ContactsView extends StatefulWidget {
 }
 
 class _ContactsViewState extends State<ContactsView> {
-  final EmployeeModelView controllerEmployees = EmployeeModelView();
-  final SearchModelView searchController = SearchModelView();
+  final SearchModelView searchModelView = SearchModelView();
 
   @override
   void initState() {
     super.initState();
-    loadPersons();
-  }
-
-  Future<void> loadPersons() async {
-    await controllerEmployees.getPersons();
-    setState(() {
-      searchController.setEmployees(controllerEmployees.persons);
+    searchModelView.addListener(() {
+      setState(() {});
     });
+    searchModelView.loadPersons();
   }
 
   @override
   void dispose() {
-    searchController.dispose();
+    searchModelView.dispose();
     super.dispose();
   }
 
@@ -44,27 +38,18 @@ class _ContactsViewState extends State<ContactsView> {
           children: [
             const TitleApp(),
             SearchBarComponent(
-              controller: searchController.controller,
+              controller: searchModelView.controller,
               onSearch: (value) {
-                setState(() => searchController.filterEmployees());
+                setState(() => searchModelView.filterEmployees());
               },
             ),
             const SizedBox(height: Space.m),
             Expanded(
               child: ListView.builder(
-                itemCount: searchController.filteredEmployees.length,
+                itemCount: searchModelView.filteredEmployees.length,
                 itemBuilder: (context, index) {
-                  final person = searchController.filteredEmployees[index];
-                  return ExpansionTile(
-                    leading: Image.network(person.image, width: 50),
-                    title: Text(person.name),
-                    children: [
-                      ListTile(
-                        title: Text('Cargo: ${person.job}'),
-                        subtitle: Text('Telefone: ${person.phone}'),
-                      ),
-                    ],
-                  );
+                  final person = searchModelView.filteredEmployees[index];
+                  return EmployeeExpansionTileComponent(person: person);
                 },
               ),
             ),
