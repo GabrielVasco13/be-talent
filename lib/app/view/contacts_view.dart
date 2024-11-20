@@ -1,6 +1,7 @@
 import 'package:be_talent/app/components/search_bar_component.dart';
 import 'package:be_talent/app/modelView/employee_model_view.dart';
 import 'package:be_talent/app/modelView/search_model_view.dart';
+import 'package:be_talent/design_system/spacing/space.dart';
 import 'package:flutter/material.dart';
 
 class ContactsView extends StatefulWidget {
@@ -47,6 +48,7 @@ class _ContactsViewState extends State<ContactsView> {
                 });
               },
             ),
+            const SizedBox(height: Space.m),
             Expanded(
               child: ListView.builder(
                 itemCount: searchController.filteredEmployees.length,

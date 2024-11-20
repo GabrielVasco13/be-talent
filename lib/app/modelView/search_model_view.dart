@@ -22,7 +22,6 @@ class SearchModelView {
           employee.job.toLowerCase().contains(query) ||
           employee.phone.contains(query);
     }).toList();
-    print('Filtered Employees: ${filteredEmployees.length}');
   }
 
   void dispose() {

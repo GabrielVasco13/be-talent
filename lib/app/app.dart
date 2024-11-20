@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: AppColors.white,
-        scaffoldBackgroundColor: AppColors.gray05,
       ),
       home: const ContactsView(),
     );
