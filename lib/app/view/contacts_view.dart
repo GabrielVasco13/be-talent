@@ -1,6 +1,5 @@
 import 'package:be_talent/app/components/search_bar_component.dart';
-import 'package:be_talent/design_system/font/helvica.dart';
-import 'package:be_talent/design_system/spacing/space.dart';
+import 'package:be_talent/app/modelView/search_model_view.dart';
 import 'package:flutter/material.dart';
 
 class ContactsView extends StatefulWidget {
@@ -11,6 +10,19 @@ class ContactsView extends StatefulWidget {
 }
 
 class _ContactsViewState extends State<ContactsView> {
+  final SearchModelView controller = SearchModelView();
+
+  @override
+  void initState() {
+    super.initState();
+    loadPersons();
+  }
+
+  Future<void> loadPersons() async {
+    await controller.getPersons();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +34,25 @@ class _ContactsViewState extends State<ContactsView> {
                 print(value);
               },
             ),
-            const SpaceWidget(height: Space.m),
-            const Helvetica(text: 'Testando', fontSize: 20.0),
+            Expanded(
+              child: ListView.builder(
+                itemCount: controller.persons.length,
+                itemBuilder: (context, index) {
+                  final person = controller.persons[index];
+
+                  return ExpansionTile(
+                    leading: Image.network(person.image),
+                    title: Text(person.name),
+                    children: [
+                      ListTile(
+                        title: Text('Cargo: ${person.cargo}'),
+                        subtitle: Text('Telefone: ${person.telefone}'),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
