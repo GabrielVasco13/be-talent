@@ -7,13 +7,18 @@ class SearchModelView {
 
   Future<void> getPersons() async {
     try {
-      final resposta = await http.get(Uri.parse('http://localhost:8080/users'));
+      final response = await http.get(
+        Uri.parse('http://10.0.2.2:3000/employees'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      );
 
-      if (resposta.statusCode == 200) {
-        final List<dynamic> json = jsonDecode(resposta.body);
+      if (response.statusCode == 200) {
+        final List<dynamic> json = jsonDecode(response.body);
         persons = json.map((e) => PersonModel.fromJson(e)).toList();
       } else {
-        print(resposta.statusCode);
+        print(response.statusCode);
       }
     } catch (e) {
       print("Erro ao buscar pessoas: $e");

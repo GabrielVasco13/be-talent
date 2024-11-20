@@ -20,7 +20,9 @@ class _ContactsViewState extends State<ContactsView> {
 
   Future<void> loadPersons() async {
     await controller.getPersons();
-    setState(() {});
+    setState(() {
+      print('State updated with ${controller.persons.length} persons.');
+    });
   }
 
   @override
@@ -39,14 +41,13 @@ class _ContactsViewState extends State<ContactsView> {
                 itemCount: controller.persons.length,
                 itemBuilder: (context, index) {
                   final person = controller.persons[index];
-
                   return ExpansionTile(
-                    leading: Image.network(person.image),
+                    leading: Image.network(person.image, width: 50),
                     title: Text(person.name),
                     children: [
                       ListTile(
-                        title: Text('Cargo: ${person.cargo}'),
-                        subtitle: Text('Telefone: ${person.telefone}'),
+                        title: Text('Cargo: ${person.job}'),
+                        subtitle: Text('Telefone: ${person.phone}'),
                       ),
                     ],
                   );

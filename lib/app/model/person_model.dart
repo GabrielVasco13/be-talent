@@ -1,25 +1,28 @@
 class PersonModel {
-  final String image;
+  final String id;
   final String name;
-  final String cargo;
-  final String dataAdmissao;
-  final String telefone;
+  final String job;
+  final String admissionDate;
+  final String phone;
+  final String image;
 
   PersonModel({
-    required this.image,
+    required this.id,
     required this.name,
-    required this.cargo,
-    required this.dataAdmissao,
-    required this.telefone,
+    required this.job,
+    required this.admissionDate,
+    required this.phone,
+    required this.image,
   });
 
   factory PersonModel.fromJson(Map<String, dynamic> json) {
     return PersonModel(
-      image: json['image'],
-      name: json['name'],
-      cargo: json['cargo'],
-      dataAdmissao: json['dataAdmissao'],
-      telefone: json['telefone'],
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      job: json['job'] ?? '',
+      admissionDate: json['admission_date'] ?? '',
+      phone: json['phone'] ?? '',
+      image: json['image'] ?? '',
     );
   }
 }
