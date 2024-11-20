@@ -1,4 +1,5 @@
 import 'package:be_talent/app/components/search_bar_component.dart';
+import 'package:be_talent/app/modelView/employee_model_view.dart';
 import 'package:be_talent/app/modelView/search_model_view.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,8 @@ class ContactsView extends StatefulWidget {
 }
 
 class _ContactsViewState extends State<ContactsView> {
-  final SearchModelView controller = SearchModelView();
+  final EmployeeModelView controllerEmployees = EmployeeModelView();
+  final SearchModelView searchController = SearchModelView();
 
   @override
   void initState() {
@@ -19,10 +21,16 @@ class _ContactsViewState extends State<ContactsView> {
   }
 
   Future<void> loadPersons() async {
-    await controller.getPersons();
+    await controllerEmployees.getPersons();
     setState(() {
-      print('State updated with ${controller.persons.length} persons.');
+      searchController.setEmployees(controllerEmployees.persons);
     });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -32,15 +40,18 @@ class _ContactsViewState extends State<ContactsView> {
         child: Column(
           children: [
             SearchBarComponent(
+              controller: searchController.controller,
               onSearch: (value) {
-                print(value);
+                setState(() {
+                  searchController.filterEmployees();
+                });
               },
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: controller.persons.length,
+                itemCount: searchController.filteredEmployees.length,
                 itemBuilder: (context, index) {
-                  final person = controller.persons[index];
+                  final person = searchController.filteredEmployees[index];
                   return ExpansionTile(
                     leading: Image.network(person.image, width: 50),
                     title: Text(person.name),
@@ -53,7 +64,7 @@ class _ContactsViewState extends State<ContactsView> {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

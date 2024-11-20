@@ -1,4 +1,5 @@
 import 'package:be_talent/app/view/contacts_view.dart';
+import 'package:be_talent/design_system/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -6,9 +7,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
-      home: ContactsView(),
+      theme: ThemeData(
+        primaryColor: AppColors.white,
+        scaffoldBackgroundColor: AppColors.gray05,
+      ),
+      home: const ContactsView(),
     );
   }
 }

@@ -1,27 +1,31 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:be_talent/app/model/person_model.dart';
+import 'package:flutter/material.dart';
 
 class SearchModelView {
-  List<PersonModel> persons = [];
+  final TextEditingController controller = TextEditingController();
+  List<PersonModel> filteredEmployees = [];
+  List<PersonModel> allEmployees = [];
 
-  Future<void> getPersons() async {
-    try {
-      final response = await http.get(
-        Uri.parse('http://10.0.2.2:3000/employees'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      );
+  SearchModelView() {
+    controller.addListener(filterEmployees);
+  }
 
-      if (response.statusCode == 200) {
-        final List<dynamic> json = jsonDecode(response.body);
-        persons = json.map((e) => PersonModel.fromJson(e)).toList();
-      } else {
-        print(response.statusCode);
-      }
-    } catch (e) {
-      print("Erro ao buscar pessoas: $e");
-    }
+  void setEmployees(List<PersonModel> emplooyes) {
+    allEmployees = emplooyes;
+    filteredEmployees = emplooyes;
+  }
+
+  void filterEmployees() {
+    final query = controller.text.toLowerCase();
+    filteredEmployees = allEmployees.where((employee) {
+      return employee.name.toLowerCase().contains(query) ||
+          employee.job.toLowerCase().contains(query) ||
+          employee.phone.contains(query);
+    }).toList();
+    print('Filtered Employees: ${filteredEmployees.length}');
+  }
+
+  void dispose() {
+    controller.dispose();
   }
 }
