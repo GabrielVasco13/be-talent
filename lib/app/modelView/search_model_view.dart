@@ -46,6 +46,7 @@ class SearchModelView extends ChangeNotifier {
 
   @override
   void dispose() {
+    super.dispose();
     controller.removeListener(filterEmployees);
     controller.dispose();
     notifyListeners();

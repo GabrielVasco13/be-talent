@@ -1,4 +1,5 @@
 import 'package:be_talent/app/components/employee_expansion_tile_component.dart';
+import 'package:be_talent/app/components/header_icons_component.dart';
 import 'package:be_talent/app/components/search_bar_component.dart';
 import 'package:be_talent/app/components/title_app.dart';
 import 'package:be_talent/app/modelView/search_model_view.dart';
@@ -36,6 +37,7 @@ class _ContactsViewState extends State<ContactsView> {
       body: SafeArea(
         child: Column(
           children: [
+            const HeaderIconsComponent(),
             const TitleApp(),
             SearchBarComponent(
               controller: searchModelView.controller,

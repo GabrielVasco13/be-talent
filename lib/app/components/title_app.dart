@@ -1,4 +1,4 @@
-import 'package:be_talent/design_system/font/helvica.dart';
+import 'package:be_talent/design_system/font/helvetica.dart';
 import 'package:be_talent/design_system/spacing/space.dart';
 import 'package:flutter/material.dart';
 
