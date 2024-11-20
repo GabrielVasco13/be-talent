@@ -1,6 +1,8 @@
 import 'package:be_talent/app/components/search_bar_component.dart';
+import 'package:be_talent/app/components/title_app.dart';
 import 'package:be_talent/app/modelView/employee_model_view.dart';
 import 'package:be_talent/app/modelView/search_model_view.dart';
+import 'package:be_talent/design_system/font/helvica.dart';
 import 'package:be_talent/design_system/spacing/space.dart';
 import 'package:flutter/material.dart';
 
@@ -40,12 +42,11 @@ class _ContactsViewState extends State<ContactsView> {
       body: SafeArea(
         child: Column(
           children: [
+            const TitleApp(),
             SearchBarComponent(
               controller: searchController.controller,
               onSearch: (value) {
-                setState(() {
-                  searchController.filterEmployees();
-                });
+                setState(() => searchController.filterEmployees());
               },
             ),
             const SizedBox(height: Space.m),

@@ -38,6 +38,7 @@ class SearchBarComponent extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(Space.sm),
             ),
+            borderSide: BorderSide.none,
           ),
           fillColor: AppColors.gray05,
           filled: true,
