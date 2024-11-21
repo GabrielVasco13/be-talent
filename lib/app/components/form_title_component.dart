@@ -1,4 +1,5 @@
 import 'package:be_talent/design_system/colors/app_colors.dart';
+import 'package:be_talent/design_system/spacing/space.dart';
 import 'package:flutter/material.dart';
 
 class FormTitleComponent extends StatelessWidget {
@@ -8,8 +9,8 @@ class FormTitleComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 8.0,
+        horizontal: Space.sr,
+        vertical: Space.l + Space.sl,
       ),
       decoration: const BoxDecoration(
         color: AppColors.gray05,
@@ -17,8 +18,8 @@ class FormTitleComponent extends StatelessWidget {
           bottom: BorderSide(color: AppColors.gray10),
         ),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8.0),
-          topRight: Radius.circular(8.0),
+          topLeft: Radius.circular(Space.l),
+          topRight: Radius.circular(Space.l),
         ),
       ),
       child: const Row(
@@ -28,7 +29,7 @@ class FormTitleComponent extends StatelessWidget {
             child: Text(
               'Foto',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: Space.sr,
                 fontWeight: FontWeight.bold,
                 color: AppColors.gray20,
               ),
@@ -39,7 +40,7 @@ class FormTitleComponent extends StatelessWidget {
             child: Text(
               'Nome',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: Space.sr,
                 fontWeight: FontWeight.bold,
                 color: AppColors.gray20,
               ),

@@ -62,8 +62,8 @@ class _ContactsViewState extends State<ContactsView> {
                             bottom: BorderSide(color: AppColors.gray10),
                           ),
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(8.0),
-                            bottomRight: Radius.circular(8.0),
+                            bottomLeft: Radius.circular(Space.l),
+                            bottomRight: Radius.circular(Space.l),
                           ),
                         ),
                         child: ListView.builder(
