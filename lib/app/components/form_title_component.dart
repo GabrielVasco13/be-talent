@@ -13,9 +13,11 @@ class FormTitleComponent extends StatelessWidget {
         vertical: Space.l + Space.sl,
       ),
       decoration: const BoxDecoration(
-        color: AppColors.gray05,
+        color: AppColors.blue10,
         border: Border(
-          bottom: BorderSide(color: AppColors.gray10),
+          bottom: BorderSide(
+            color: AppColors.gray10,
+          ),
         ),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(Space.l),
@@ -31,7 +33,7 @@ class FormTitleComponent extends StatelessWidget {
               style: TextStyle(
                 fontSize: Space.sr,
                 fontWeight: FontWeight.bold,
-                color: AppColors.gray20,
+                color: AppColors.black,
               ),
             ),
           ),
@@ -42,7 +44,7 @@ class FormTitleComponent extends StatelessWidget {
               style: TextStyle(
                 fontSize: Space.sr,
                 fontWeight: FontWeight.bold,
-                color: AppColors.gray20,
+                color: AppColors.black,
               ),
             ),
           ),

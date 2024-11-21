@@ -20,8 +20,24 @@ class _EmployeeExpansionTileComponentState
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      leading: Image.network(widget.person.image, width: 50),
-      title: Text(widget.person.name),
+      leading: ClipRRect(
+        borderRadius:
+            BorderRadius.circular(25.0), // Adjust the radius as needed
+        child: Image.network(
+          widget.person.image,
+          width: 50,
+          fit: BoxFit.contain,
+        ),
+      ),
+      title: Padding(
+        padding: const EdgeInsets.only(
+          left: Space.l,
+        ),
+        child: Text(
+          widget.person.name,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
       trailing: SvgPicture.asset(
         isExpanded
             ? 'assets/icons/arrow_up.svg'
@@ -40,8 +56,46 @@ class _EmployeeExpansionTileComponentState
       },
       children: [
         ListTile(
-          title: Text('Cargo: ${widget.person.job}'),
-          subtitle: Text('Telefone: ${widget.person.phone}'),
+          title: Row(
+            children: [
+              const Text(
+                'Cargo:',
+                style: TextStyle(
+                  fontSize: Space.sr,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.black,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                widget.person.job,
+                style: const TextStyle(
+                  fontSize: Space.sr,
+                  color: AppColors.black,
+                ),
+              ),
+            ],
+          ),
+          subtitle: Row(
+            children: [
+              const Text(
+                'Telefone:',
+                style: TextStyle(
+                  fontSize: Space.sr,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.black,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                widget.person.phone,
+                style: const TextStyle(
+                  fontSize: Space.sr,
+                  color: AppColors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
