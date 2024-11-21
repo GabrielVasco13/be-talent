@@ -17,7 +17,7 @@ class HeaderIconsComponent extends StatelessWidget {
           ),
           child: CircleAvatar(
             backgroundColor: AppColors.gray10,
-            radius: Space.sm,
+            radius: Space.er,
             child: Helvetica.h2('CG'),
           ),
         )
