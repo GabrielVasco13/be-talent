@@ -21,8 +21,7 @@ class _EmployeeExpansionTileComponentState
   Widget build(BuildContext context) {
     return ExpansionTile(
       leading: ClipRRect(
-        borderRadius:
-            BorderRadius.circular(25.0), // Adjust the radius as needed
+        borderRadius: BorderRadius.circular(Space.er),
         child: Image.network(
           widget.person.image,
           width: 50,
