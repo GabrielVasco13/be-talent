@@ -5,7 +5,6 @@ import 'package:be_talent/app/components/search_bar_component.dart';
 import 'package:be_talent/app/components/title_app.dart';
 import 'package:be_talent/app/modelView/search_model_view.dart';
 import 'package:be_talent/design_system/colors/app_colors.dart';
-import 'package:be_talent/design_system/font/helvetica.dart';
 import 'package:be_talent/design_system/spacing/space.dart';
 import 'package:flutter/material.dart';
 
@@ -48,27 +47,38 @@ class _ContactsViewState extends State<ContactsView> {
                 setState(() => searchModelView.filterEmployees());
               },
             ),
-            const SizedBox(height: Space.m),
+            const SizedBox(height: Space.er),
             Expanded(
-              child: Column(
-                children: [
-                  const FormTitleComponent(),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Space.sr,
-                      ),
-                      child: ListView.builder(
-                        itemCount: searchModelView.filteredEmployees.length,
-                        itemBuilder: (context, index) {
-                          final person =
-                              searchModelView.filteredEmployees[index];
-                          return EmployeeExpansionTileComponent(person: person);
-                        },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Space.r),
+                child: Column(
+                  children: [
+                    const FormTitleComponent(),
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: AppColors.gray05,
+                          border: Border(
+                            bottom: BorderSide(color: AppColors.gray10),
+                          ),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(8.0),
+                            bottomRight: Radius.circular(8.0),
+                          ),
+                        ),
+                        child: ListView.builder(
+                          itemCount: searchModelView.filteredEmployees.length,
+                          itemBuilder: (context, index) {
+                            final person =
+                                searchModelView.filteredEmployees[index];
+                            return EmployeeExpansionTileComponent(
+                                person: person);
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],
